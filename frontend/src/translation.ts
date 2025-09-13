@@ -1,12 +1,12 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import XHR from "i18next-xhr-backend";
+import HttpBackend from "i18next-http-backend";
 
 import translationEn from "./locales/en/translation.json";
 import translationEs from "./locales/es/translation.json";
 
 i18n
-  .use(XHR)
+  .use(HttpBackend)
   .use(LanguageDetector)
   .init({
     debug: false,
@@ -19,15 +19,11 @@ i18n
     },
 
     resources: {
-      en: {
-        translations: translationEn,
-      },
-      es: {
-        translations: translationEs,
-      },
+      en: translationEn,
+      es: translationEs,
     },
-    ns: ["translations"],
-    defaultNS: "translations",
+    ns: [],
+    defaultNS: undefined,
   });
 
 export default i18n;

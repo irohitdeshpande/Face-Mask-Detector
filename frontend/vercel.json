@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "build/static/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/build/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/build/index.html"
+    }
+  ],
+  "env": {
+    "REACT_APP_API_URL": "@react-app-api-url",
+      "REACT_APP_GEMINI_API_KEY": "@react-app-gemini-api-key",
+    "REACT_APP_FIREBASE_API_KEY": "@react-app-firebase-api-key",
+    "REACT_APP_FIREBASE_AUTH_DOMAIN": "@react-app-firebase-auth-domain",
+    "REACT_APP_FIREBASE_PROJECT_ID": "@react-app-firebase-project-id",
+    "REACT_APP_FIREBASE_STORAGE_BUCKET": "@react-app-firebase-storage-bucket",
+    "REACT_APP_FIREBASE_MESSAGING_SENDER_ID": "@react-app-firebase-messaging-sender-id",
+    "REACT_APP_FIREBASE_APP_ID": "@react-app-firebase-app-id",
+    "REACT_APP_FIREBASE_MEASUREMENT_ID": "@react-app-firebase-measurement-id"
+  }
+}

@@ -1,15 +1,16 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, Auth } from 'firebase/auth'; // Importing the auth module from Firebase
+import { getAuth, Auth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD8vcFw60ADNNY72jIBTY2YcUuM4EMQwSo",
-    authDomain: "mini-project-f2736.firebaseapp.com",
-    projectId: "mini-project-f2736",
-    storageBucket: "mini-project-f2736.appspot.com",
-    messagingSenderId: "447345224411",
-    appId: "1:447345224411:web:aff5a5d72b54b4e2957afe",
-    measurementId: "G-NHZK7WWEMY"
-  };
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: "G-7NCNRRR4HJ"
+};
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -17,4 +18,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 // Getting the Auth instance from Firebase
 const auth: Auth = getAuth(firebaseApp);
 
-export { auth, firebaseApp };
+// Initialize Firestore
+const db = getFirestore(firebaseApp);
+
+export { auth, firebaseApp, db };

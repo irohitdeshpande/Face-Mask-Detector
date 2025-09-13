@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Row, Col, Drawer } from "antd";
-import { withTranslation, TFunction } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { withTranslation } from "react-i18next";
+import { TFunction } from "../../common/types";
+import { useNavigate } from "react-router-dom";
 import Container from "../../common/Container";
-import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
 import { signOut } from "@firebase/auth";
 import { auth } from "../../firebase";
@@ -29,17 +29,9 @@ const Header = ({ t }: { t: TFunction }) => {
   };
 
   const MenuItem = () => {
-    const scrollTo = (id: string) => {
-      const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-
-      setVisibility(false);
-    };
-    const history = useHistory();
+    const navigate = useNavigate();
     const redirectTo = (path: string) => {
-      history.push(path); // Redirect to the specified path
+      navigate(path); // Redirect to the specified path
       setVisibility(false); // Close the drawer
     };
 

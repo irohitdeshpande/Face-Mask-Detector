@@ -1,4 +1,6 @@
-import { TFunction } from "react-i18next";
+// Using React.ComponentType for translation function type
+export type TFunction = (key: string) => string;
+
 export interface ContainerProps {
   border?: boolean;
   children: React.ReactNode;

@@ -1,11 +1,10 @@
 import { lazy, Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import routes from "./config";
 import { Styles } from "../styles/styles";
 import { useAuth } from "../AuthProvider";
-import Chatbot from "react-chatbot-kit";
 import ChatbotUi from "../components/Chatbot/Chatbot";
 
 const Router = () => {
@@ -14,18 +13,20 @@ const Router = () => {
     <Suspense fallback={null}>
       <Styles />
       <Header />
-      <Switch>
+      <Routes>
         {routes.map((routeItem) => {
-          return (
+          const Component = lazy(() => import(`../pages/${routeItem.component}`));
+          // Handle multiple paths by creating multiple routes
+          const paths = Array.isArray(routeItem.path) ? routeItem.path : [routeItem.path];
+          return paths.map((path) => (
             <Route
-              key={routeItem.component}
-              path={routeItem.path}
-              exact={routeItem.exact}
-              component={lazy(() => import(`../pages/${routeItem.component}`))}
+              key={`${routeItem.component}-${path}`}
+              path={path}
+              element={<Component />}
             />
-          );
+          ));
         })}
-      </Switch>
+      </Routes>
       {isAuthenticated && (<ChatbotUi />)}
       <Footer />
     </Suspense>

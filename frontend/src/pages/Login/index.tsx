@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Container from "../../common/Container";
 import { ContentSection } from "../../components/ContentBlock/styles";
 import { FormGroup } from "../../components/ContactForm/styles";
@@ -12,12 +12,12 @@ import { notification } from "antd";
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
         await signInWithEmailAndPassword(auth ,email, password);
-        history.push("/");      
+        navigate("/");      
         notification["success"]({
             message: "Success",
             description: "Your message has been sent!",

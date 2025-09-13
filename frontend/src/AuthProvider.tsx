@@ -14,7 +14,11 @@ const AuthContext = createContext<AuthContextType>({
   loading: true,
 });
 
-const AuthProvider: React.FC = ({ children }) => {
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 

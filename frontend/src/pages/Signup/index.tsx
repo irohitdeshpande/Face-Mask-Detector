@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Container from "../../common/Container";
 import { ContentSection } from "../../components/ContentBlock/styles";
 import { FormGroup } from "../../components/ContactForm/styles";
@@ -13,15 +13,14 @@ import { FirebaseError } from "firebase/app";
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleSignup = async () => {
     try {
       // Create user with email and password
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // Optionally, you can do something with the userCredential, such as accessing userCredential.user
+      await createUserWithEmailAndPassword(auth, email, password);
 
       // Redirect to the dashboard after successful sign-up
-      history.push("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       // Handle authentication errors here
       const firebaseError = error as FirebaseError;
@@ -37,7 +36,7 @@ const LoginPage: React.FC = () => {
     // You can replace this with your actual authentication logic
 
     // Redirect to the dashboard after successful login
-    history.push("/dashboard");
+    navigate("/dashboard");
   };
 
   return (
