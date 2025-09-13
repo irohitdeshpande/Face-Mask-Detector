@@ -18,7 +18,8 @@ CORS(app)
 # Place the root route after app is defined
 @app.route("/")
 def index():
-    return redirect("/video_feed")
+    # For headless/container hosting, return a simple JSON instead of redirecting to video feed
+    return jsonify({"service": "face-mask-detector", "status": "ok", "routes": ["/health", "/detect_base64", "/video_feed"]})
 
 # Load face detector model
 prototxtPath = os.path.join(os.path.dirname(__file__), "face_detector/deploy.prototxt")

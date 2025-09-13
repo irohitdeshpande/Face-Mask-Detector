@@ -1,0 +1,19 @@
+# Exclude large / unnecessary directories from build context
+frontend/
+documentation/
+images/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+.git
+.gitignore
+venv/
+.facemask_detection/venv/
+node_modules/
+facemask_detection/node_modules/
+facemask_detection/dataset/
+facemask_detection/myCode/
+facemask_detection/plot.png
+*.ipynb
